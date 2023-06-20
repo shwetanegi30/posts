@@ -17,7 +17,7 @@ const Posts = () => {
         Available Posts
       </Typography>
       {posts.map((post) => (
-        <Typography key={post.id} variant="h5" component="h2" gutterBottom>
+        <Typography key={post.id}>
           {post.title}
         </Typography>
       ))}
