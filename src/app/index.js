@@ -1,14 +1,12 @@
-import Head from 'next/head';
 import Posts from './posts';
 
-const Home = () => (
+const index = () => (
   <>
     <Head>
       <title>My Post</title>
-      <link rel="icon" href="/favicon.ico" />
     </Head>
     <Posts />
   </>
 );
 
-export default Home;
+export default index;
