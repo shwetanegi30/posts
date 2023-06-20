@@ -1,7 +1,6 @@
 // import { useEffect, useState } from 'react';
 // import { Container, Typography } from '@mui/material';
 
-
 // const Posts = () => {
 //   const [posts, setPosts] = useState([]);
 
@@ -11,10 +10,9 @@
 //       .then((data) => setPosts(data));
 //   }, []);
 
-
 //   return (
 //     <Container>
-   
+
 //       <Typography>
 //         Available Posts
 //       </Typography>
@@ -29,13 +27,15 @@
 
 // export default Posts;
 
-
-
-
-
-import { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, CardMedia } from '@mui/material';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { useEffect, useState } from "react";
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -59,23 +59,101 @@ const Posts = () => {
 
   const renderPosts = () => {
     return posts.map((post) => (
-      <Card key={post.id} sx={{ marginBottom: '20px', backgroundColor:'#48556a', border:'1px solid #ccc', borderRadius: '15px', height:'96%', width:'50%',display:'flex',justifyContent:'center',alignContent:'center' }}>
+      <Card
+        key={post.id}
+        sx={{
+          marginBottom: "20px",
+          backgroundColor: "#fff",
+          border: "1px solid #ccc",
+          borderRadius: "15px",
+          height: "96%",
+          width: "50%",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
         <CardMedia
           component="img"
-          height="200"
+          height="210"
           image={post.image}
           alt={post.title}
-          sx={{width:'50%'}}
+          sx={{ width: "50%" }}
         />
         <CardContent>
-          <Typography variant="h6" component="div" gutterBottom>
+          <Typography
+            variant="h6"
+            component="div"
+            gutterBottom
+            sx={{
+              color: "grey",
+              lineHeight: "1.3",
+              fontSize: "13px",
+              margin: "auto",
+            }}
+          >
+            {post.category}
+          </Typography>
+          <Typography
+            variant="h1"
+            component="div"
+            gutterBottom
+            sx={{
+              lineHeight: "1.3",
+              fontSize: "22px",
+              margin: "auto",
+              fontWeight: "700",
+              margin: "7px 0 7px 0",
+            }}
+          >
             {post.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" gutterBottom>
+          <Typography
+            variant="h4"
+            component="div"
+            gutterBottom
+            sx={{
+              color: "grey",
+              lineHeight: "1.3",
+              fontSize: "12px",
+              marginTop: "9px",
+            }}
+          >
+            {post.description}
+          </Typography>
+          <Typography component="div"
+           sx={{
+              display: "flex",
+              alignItems:"center",
+              gap: "75px",
+              fontSize: "12px",
+              marginTop: "20px",
+            }}
+            >
+          <Typography
+            variant="body2"
+            component="span"
+            gutterBottom
+            SX={{
+              fontSize: "17px",
+              fontWeight: "500",
+             color: 'hsl(158, 36%, 37%)',
+              paddingRight: "20px",
+            }}
+          >
             Rating: {post.rating.rate}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2"
+          component="span"
+           SX={{
+              fontSize: "17px",
+              fontWeight: "500",
+              color: "hsl(158, 36%, 37%)",
+              paddingRight: "20px",
+            }}
+            >
             Count: {post.rating.count}
+          </Typography>
           </Typography>
         </CardContent>
       </Card>
@@ -84,7 +162,6 @@ const Posts = () => {
 
   return (
     <Container>
-
       <InfiniteScroll
         dataLength={posts.length}
         next={fetchPosts}
