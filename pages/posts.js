@@ -13,9 +13,7 @@ const Posts = () => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
+
 
   const fetchPosts = () => {
     fetch(`https://fakestoreapi.com/products?limit=5&page=${page}`)
@@ -27,6 +25,9 @@ const Posts = () => {
       })
       .catch((error) => console.log(error));
   };
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   const renderPosts = () => {
     return posts.map((post) => (
