@@ -1,32 +1,3 @@
-// import { useEffect, useState } from 'react';
-// import { Container, Typography } from '@mui/material';
-
-// const Posts = () => {
-//   const [posts, setPosts] = useState([]);
-
-//   useEffect(() => {
-//     fetch('https://fakestoreapi.com/products/')
-//       .then((response) => response.json())
-//       .then((data) => setPosts(data));
-//   }, []);
-
-//   return (
-//     <Container>
-
-//       <Typography>
-//         Available Posts
-//       </Typography>
-//       {posts.map((post) => (
-//         <Typography key={post.id}>
-//           {post.title}
-//         </Typography>
-//       ))}
-//     </Container>
-//   );
-// };
-
-// export default Posts;
-
 import { useEffect, useState } from "react";
 import {
   Container,
@@ -44,7 +15,7 @@ const Posts = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   const fetchPosts = () => {
     fetch(`https://fakestoreapi.com/products?limit=5&page=${page}`)
@@ -63,14 +34,14 @@ const Posts = () => {
         key={post.id}
         sx={{
           marginBottom: "20px",
-          backgroundColor: "#fff",
+          backgroundColor: "#f3f3f6",
           border: "1px solid #ccc",
           borderRadius: "15px",
-          height: "96%",
-          width: "50%",
           display: "flex",
           justifyContent: "center",
           alignContent: "center",
+          width: "421px",
+          height: "316px",
         }}
       >
         <CardMedia
@@ -78,9 +49,12 @@ const Posts = () => {
           height="210"
           image={post.image}
           alt={post.title}
-          sx={{ width: "50%" }}
+          sx={{
+            width: "50%",
+            marginTop: "50px",
+          }}
         />
-        <CardContent>
+        <CardContent sx={{ paddingBottom: "0" }}>
           <Typography
             variant="h6"
             component="div"
@@ -90,6 +64,7 @@ const Posts = () => {
               lineHeight: "1.3",
               fontSize: "13px",
               margin: "auto",
+              marginTop: "8px",
             }}
           >
             {post.category}
@@ -100,7 +75,7 @@ const Posts = () => {
             gutterBottom
             sx={{
               lineHeight: "1.3",
-              fontSize: "22px",
+              fontSize: "18px",
               margin: "auto",
               fontWeight: "700",
               margin: "7px 0 7px 0",
@@ -121,39 +96,42 @@ const Posts = () => {
           >
             {post.description}
           </Typography>
-          <Typography component="div"
-           sx={{
+          <Typography
+            component="div"
+            sx={{
               display: "flex",
-              alignItems:"center",
-              gap: "75px",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "7px",
               fontSize: "12px",
               marginTop: "20px",
             }}
-            >
-          <Typography
-            variant="body2"
-            component="span"
-            gutterBottom
-            SX={{
-              fontSize: "17px",
-              fontWeight: "500",
-             color: 'hsl(158, 36%, 37%)',
-              paddingRight: "20px",
-            }}
           >
-            Rating: {post.rating.rate}
-          </Typography>
-          <Typography variant="body2"
-          component="span"
-           SX={{
-              fontSize: "17px",
-              fontWeight: "500",
-              color: "hsl(158, 36%, 37%)",
-              paddingRight: "20px",
-            }}
+            <Typography
+              variant="body2"
+              component="span"
+              gutterBottom
+              style={{
+                color: "hsl(158, 36%, 37%)",
+                fontSize: "15px",
+                fontWeight: "500",
+                paddingRight: "20px",
+              }}
             >
-            Count: {post.rating.count}
-          </Typography>
+              Rating: {post.rating.rate}
+            </Typography>
+            <Typography
+              variant="body2"
+              component="span"
+              style={{
+                fontSize: "15px",
+                fontWeight: "500",
+                color: "hsl(158, 36%, 37%)",
+                paddingRight: "20px",
+              }}
+            >
+              Count: {post.rating.count}
+            </Typography>
           </Typography>
         </CardContent>
       </Card>
@@ -161,7 +139,7 @@ const Posts = () => {
   };
 
   return (
-    <Container>
+    <Container className="custom-container">
       <InfiniteScroll
         dataLength={posts.length}
         next={fetchPosts}
@@ -169,7 +147,17 @@ const Posts = () => {
         loader={<h4>Loading...</h4>}
         endMessage={<Typography variant="body1">No more posts</Typography>}
       >
-        {renderPosts()}
+        <div
+          style={{
+            marginTop: "50px",
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "15px",
+          }}
+        >
+        
+          {renderPosts()}
+        </div>
       </InfiniteScroll>
     </Container>
   );

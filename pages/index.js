@@ -1,17 +1,19 @@
-import Head from 'next/head';
-import Posts from './posts';
-import Sidebar from './Sidebar';
-import '../public/globals.css';
+import Head from "next/head";
+import Sidebar from "./Sidebar";
+import Posts from "./posts";
+import "../public/globals.css";
 
-const index = () => (
+const Index = () => (
   <>
     <Head>
       <title>My Post</title>
     </Head>
 
-    <Sidebar />
-    <Posts />
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <Posts />
+    </div>
   </>
 );
 
-export default index;
+export default Index;
