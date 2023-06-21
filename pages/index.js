@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Sidebar from "./Sidebar";
 import Posts from "./posts";
-import "../public/globals.css";
+import "./styles.css";
 
 const Index = () => (
   <>
