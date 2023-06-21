@@ -7,6 +7,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
+import "./styles.css";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
